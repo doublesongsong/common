@@ -5,6 +5,49 @@
 CXXFLAGS('-fPIC -Wall -g', '-fPIC -Wall -g')
 
 BOOST_INC='/root/boost/include'
+G_TEST_INC='/usr/local/include /usr/include'
+G_TEST_LIB='/usr/local/lib/libgtest.a'
 #static library file .a
 STATIC_LIBRARY('common',
                Sources("src/*.cc", Include('include', BOOST_INC)))
+
+ut_ldflags='-lpthread -lrt'
+UT_APPLICATION('perf_test_condvar',
+               Sources("test/perf_test_condvar.cc", Include(G_TEST_INC, BOOST_INC, 'include')),
+               LDFlags(ut_ldflags, ut_ldflags),
+               Libs(G_TEST_LIB, '$OUT/lib/libcommon.a'))
+
+UT_APPLICATION('perf_test_counter',
+               Sources("test/perf_test_counter.cc", Include(G_TEST_INC, BOOST_INC, 'include')),
+               LDFlags(ut_ldflags, ut_ldflags),
+               Libs(G_TEST_LIB, '$OUT/lib/libcommon.a'))
+
+UT_APPLICATION('perf_test_framework',
+               Sources("test/perf_test_framework.cc", Include(G_TEST_INC, BOOST_INC, 'include')),
+               LDFlags(ut_ldflags, ut_ldflags),
+               Libs(G_TEST_LIB, '$OUT/lib/libcommon.a'))
+
+UT_APPLICATION('perf_test_mutex',
+               Sources("test/perf_test_mutex.cc", Include(G_TEST_INC, BOOST_INC, 'include')),
+               LDFlags(ut_ldflags, ut_ldflags),
+               Libs(G_TEST_LIB, '$OUT/lib/libcommon.a'))
+
+UT_APPLICATION('perf_test_thread_pool',
+               Sources("test/perf_test_thread_pool.cc", Include(G_TEST_INC, BOOST_INC, 'include')),
+               LDFlags(ut_ldflags, ut_ldflags),
+               Libs(G_TEST_LIB, '$OUT/lib/libcommon.a'))
+
+UT_APPLICATION('test_logging',
+               Sources("test/test_logging.cc", Include(G_TEST_INC, BOOST_INC, 'include')),
+               LDFlags(ut_ldflags, ut_ldflags),
+               Libs(G_TEST_LIB, '$OUT/lib/libcommon.a'))
+
+UT_APPLICATION('test_mutex',
+               Sources("test/test_mutex.cc", Include(G_TEST_INC, BOOST_INC, 'include')),
+               LDFlags(ut_ldflags, ut_ldflags),
+               Libs(G_TEST_LIB, '$OUT/lib/libcommon.a'))
+
+UT_APPLICATION('test_thread_pool',
+               Sources("test/test_thread_pool.cc", Include(G_TEST_INC, BOOST_INC, 'include')),
+               LDFlags(ut_ldflags, ut_ldflags),
+               Libs(G_TEST_LIB, '$OUT/lib/libcommon.a'))
