@@ -1,0 +1,10 @@
+#edit-mode: -*- python -*-
+#coding:utf-8
+
+#Preprocessor flags.
+CXXFLAGS('-fPIC -Wall -g', '-fPIC -Wall -g')
+
+BOOST_INC='/root/boost/include'
+#static library file .a
+STATIC_LIBRARY('common',
+               Sources("src/*.cc", Include('include', BOOST_INC)))
