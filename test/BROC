@@ -1,0 +1,50 @@
+#edit-mode: -*- python -*-
+#coding:utf-8
+
+CONFIGS('brocdeps/gtest@master@branch')
+
+GTEST_INC = '$WORKSPACE/brocdeps/gtest/include'
+GTEST_LIB = '$WORKSPACE/brocdeps/gglib/libgtest.a'
+BOOST_INC = '$WORKSPACE/brocdeps/boost/include'
+UT_INC = Include(GTEST_INC, BOOST_INC, '../include')
+UT_LDFLAGS='-lpthread -lrt'
+
+UT_APPLICATION('perf_test_condvar',
+               Sources("perf_test_condvar.cc", UT_INC),
+               LDFlags(UT_LDFLAGS, UT_LDFLAGS),
+               Libs(GTEST_LIB, '$OUT/lib/libcommon.a'))
+
+UT_APPLICATION('perf_test_counter',
+               Sources("perf_test_counter.cc", UT_INC),
+               LDFlags(UT_LDFLAGS, UT_LDFLAGS),
+               Libs(GTEST_LIB, '$OUT/lib/libcommon.a'))
+
+UT_APPLICATION('perf_test_framework',
+               Sources("perf_test_framework.cc", UT_INC),
+               LDFlags(UT_LDFLAGS, UT_LDFLAGS),
+               Libs(GTEST_LIB, '$OUT/lib/libcommon.a'))
+
+UT_APPLICATION('perf_test_mutex',
+               Sources("perf_test_mutex.cc", UT_INC),
+               LDFlags(UT_LDFLAGS, UT_LDFLAGS),
+               Libs(GTEST_LIB, '$OUT/lib/libcommon.a'))
+
+UT_APPLICATION('perf_test_thread_pool',
+               Sources("perf_test_thread_pool.cc", UT_INC),
+               LDFlags(UT_LDFLAGS, UT_LDFLAGS),
+               Libs(GTEST_LIB, '$OUT/lib/libcommon.a'))
+
+UT_APPLICATION('test_logging',
+               Sources("test_logging.cc", UT_INC),
+               LDFlags(UT_LDFLAGS, UT_LDFLAGS),
+               Libs(GTEST_LIB, '$OUT/lib/libcommon.a'))
+
+UT_APPLICATION('test_mutex',
+               Sources("test_mutex.cc", UT_INC),
+               LDFlags(UT_LDFLAGS, UT_LDFLAGS),
+               Libs(GTEST_LIB, '$OUT/lib/libcommon.a'))
+
+UT_APPLICATION('test_thread_pool',
+               Sources("test_thread_pool.cc", UT_INC),
+               LDFlags(UT_LDFLAGS, UT_LDFLAGS),
+               Libs(GTEST_LIB, '$OUT/lib/libcommon.a'))
